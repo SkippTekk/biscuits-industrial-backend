@@ -22,9 +22,8 @@ connection.getConnection( (err) =>{
   let invtypes = {};
 
 invtypes.invTypes = () => {
-
     return new Promise((resolve, reject) => {
-            connection.query(`SELECT * FROM invTypes`, (err, results) => {
+            connection.query('SELECT * FROM invTypes', (err, results) => {
                 if(err){
                     return reject(err);
                 }
@@ -33,7 +32,6 @@ invtypes.invTypes = () => {
     });
 };
 invtypes.tables = () => {
-
     return new Promise((resolve, reject) => {
         connection.query(`SHOW TABLES`, (err, results) => {
             if(err){
@@ -43,10 +41,19 @@ invtypes.tables = () => {
         });
     });
 };
-invtypes.list = (id) => {
-
+invtypes.ships = (id) => {
     return new Promise((resolve, reject) => {
-        connection.query('SELECT * FROM ?', [id] , (err, results) => {
+        connection.query(`SELECT * FROM invTypes WHERE typeName = ?`, id , (err, results) => {
+            if(err){
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
+invtypes.id = (id) => {
+    return new Promise((resolve, reject) => {
+        connection.query(`SELECT * FROM invTypes WHERE typeID = ?`, id , (err, results) => {
             if(err){
                 return reject(err);
             }

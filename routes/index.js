@@ -30,9 +30,36 @@ router.get('/tables', async (req,res, next) => {
         res.sendStatus(500);
     }
 });
-router.get(`/:id`, async (req,res, next) => {
+router.get(`/s/:id`, async (req,res, next) => {
     try{
-        let results = await db.list(req.params.id);
+        let results = await db.ships(req.params.id);
+        res.json(results);
+    } catch (e){
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+router.get(`/ships/:id`, async (req,res, next) => {
+    try{
+        let results = await db.ships(req.params.id);
+        res.json(results);
+    } catch (e){
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+router.get(`/i/:id`, async (req,res, next) => {
+    try{
+        let results = await db.id(req.params.id);
+        res.json(results);
+    } catch (e){
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+router.get(`/items/:id`, async (req,res, next) => {
+    try{
+        let results = await db.id(req.params.id);
         res.json(results);
     } catch (e){
         console.log(e);
