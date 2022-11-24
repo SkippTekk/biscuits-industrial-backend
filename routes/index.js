@@ -8,7 +8,7 @@ router.get ('/', (req, res, next) => {
         Description: `API system for public and the website that is provided.`,
         Provider: 'SkippTekk',
         DiscordInvite: 'kksqmuu',
-        Version: 'N/A',
+        Version: '1.0',
 
     });
 });
