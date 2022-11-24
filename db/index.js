@@ -23,7 +23,7 @@ connection.getConnection( (err) =>{
 
 invtypes.invTypes = () => {
     return new Promise((resolve, reject) => {
-            connection.query('SELECT * FROM invTypes', (err, results) => {
+            connection.query('select * from chrFactions where corporationID IN (1000084,1000035,1000120,1000051,1000129,1000127,1000162,1000134,1000138,1000135,1000130,1000128,1000298,1000297)', (err, results) => {
                 if(err){
                     return reject(err);
                 }
@@ -59,6 +59,16 @@ invtypes.id = (id) => {
             }
             return resolve(results);
         });
+    });
+};
+invtypes.navbar = () => {
+    return new Promise((resolve, reject) => {
+            connection.query('select FactionName,iconID,raceIDs,FactionID from chrFactions where corporationID IN (1000084,1000035,1000120,1000051,1000129,1000127,1000162,1000134,1000138,1000135,1000130,1000128,1000298,1000297)', (err, results) => {
+                if(err){
+                    return reject(err);
+                }
+                return resolve(results);
+            });
     });
 };
 
