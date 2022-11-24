@@ -32,3 +32,5 @@ connection.getConnection( (err) =>{
               });
       });
   };
+
+module.exports = invtypes;
