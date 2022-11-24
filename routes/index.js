@@ -14,7 +14,25 @@ router.get ('/', (req, res, next) => {
 });
 router.get('/invTypes', async (req,res, next) => {
     try{
-        let results = await db.all(req.params.all);
+        let results = await db.invTypes(req.params.invTypes);
+        res.json(results);
+    } catch (e){
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+router.get('/tables', async (req,res, next) => {
+    try{
+        let results = await db.tables(req.params.tables);
+        res.json(results);
+    } catch (e){
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+router.get(`/:id`, async (req,res, next) => {
+    try{
+        let results = await db.list(req.params.id);
         res.json(results);
     } catch (e){
         console.log(e);

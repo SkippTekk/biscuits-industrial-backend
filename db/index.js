@@ -21,16 +21,38 @@ connection.getConnection( (err) =>{
 
   let invtypes = {};
 
-  invtypes.all = () => {
-  
-      return new Promise((resolve, reject) => {
-              connection.query(`SELECT * FROM invTypes`, (err, results) => {
-                  if(err){
-                      return reject(err);
-                  }
-                  return resolve(results);
-              });
-      });
-  };
+invtypes.invTypes = () => {
+
+    return new Promise((resolve, reject) => {
+            connection.query(`SELECT * FROM invTypes`, (err, results) => {
+                if(err){
+                    return reject(err);
+                }
+                return resolve(results);
+            });
+    });
+};
+invtypes.tables = () => {
+
+    return new Promise((resolve, reject) => {
+        connection.query(`SHOW TABLES`, (err, results) => {
+            if(err){
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
+invtypes.list = (id) => {
+
+    return new Promise((resolve, reject) => {
+        connection.query('SELECT * FROM ?', [id] , (err, results) => {
+            if(err){
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
 
 module.exports = invtypes;
