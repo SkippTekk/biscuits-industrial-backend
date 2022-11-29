@@ -61,6 +61,16 @@ invtypes.id = (id) => {
         });
     });
 };
+invtypes.build = (id) => {
+    return new Promise((resolve, reject) => {
+        connection.query(`SELECT m.materialTypeID, m.quantity, i2.typeName, m.activityID FROM industryActivityMaterials m INNER JOIN invTypes i1 ON i1.typeID = m.typeID INNER JOIN invTypes i2 ON i2.typeID = m.materialtypeID INNER JOIN ramActivities i3 ON i3.activityID = m.activityID = 1 WHERE i1.typeName = ? AND m.activityID = 1 ORDER BY m.materialTypeID ASC`, id , (err, results) => {
+            if(err){
+                return reject(err);
+            }
+            return resolve(results);
+        });
+    });
+};
 invtypes.navbar = () => {
     return new Promise((resolve, reject) => {
             connection.query('select FactionName,iconID,raceIDs,FactionID from chrFactions where corporationID IN (1000084,1000035,1000120,1000051,1000129,1000127,1000162,1000134,1000138,1000135,1000130,1000128,1000298,1000297)', (err, results) => {

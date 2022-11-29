@@ -66,6 +66,24 @@ router.get(`/items/:id`, async (req,res, next) => {
         res.sendStatus(500);
     }
 });
+router.get(`/b/:id`, async (req,res, next) => {
+    try{
+        let results = await db.build(req.params.id + ` blueprint`);
+        res.json(results);
+    } catch (e){
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+router.get(`/build/:id`, async (req,res, next) => {
+    try{
+        let results = await db.build(req.params.id + ` blueprint`);
+        res.json(results);
+    } catch (e){
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
 router.get('/navbar', async (req,res, next) => {
     try{
         let results = await db.navbar(req.params.navbar);
