@@ -73,7 +73,7 @@ invtypes.build = (id) => {
 };
 invtypes.navbar = () => {
     return new Promise((resolve, reject) => {
-            connection.query('select FactionName,iconID,raceIDs,FactionID from chrFactions where corporationID IN (1000084,1000035,1000120,1000051,1000129,1000127,1000162,1000134,1000138,1000135,1000130,1000128,1000298,1000297)', (err, results) => {
+            connection.query('select * from chrFactions where factionID IN (500003,500001,500004,500002,500014,500010,500019,500012,500011,500020,500016,500018,500026,500027)', (err, results) => {
                 if(err){
                     return reject(err);
                 }
