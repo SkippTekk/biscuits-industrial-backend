@@ -10,8 +10,12 @@
   "author": "SkippTekk#6969",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-validator": "^6.14.2",
+    "helmet": "^6.0.1",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.20"
   }
