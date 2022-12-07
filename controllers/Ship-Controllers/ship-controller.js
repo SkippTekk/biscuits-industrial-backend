@@ -1,23 +1,24 @@
-const { db } = require("../../db");
+const db = require("../../db/index");
 
-const getShip = async (req, res) => {
+const getShipByName = async (req, res) => {
   const input = req.params.input;
 
-  let ship;
-
   try {
-    ship = db.query(`SELECT * FROM invTypes WHERE typeName = ${input}`);
+    db.query(
+      `SELECT * FROM invTypes WHERE typeName = "${input}"`,
+      (err, data) => {
+        if (err) {
+          return res
+            .status(404)
+            .json({ error: "Unable to locate that item within database." });
+        } else {
+          return res.json(data);
+        }
+      }
+    );
   } catch (err) {
     return res.status(500).json({ error: "Unable to query database." });
   }
-
-  if (ship) {
-    return res.json(ship);
-  } else {
-    return res
-      .status(404)
-      .json({ error: "Unable to locate item within database." });
-  }
 };
 
-module.exports = getShip;
+module.exports = getShipByName;
