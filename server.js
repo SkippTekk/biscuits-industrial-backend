@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
+const logger = require("morgan");
 const bodyParser = require("body-parser");
 
 const shipRoutes = require("./routes/ship-routes");
@@ -9,6 +10,8 @@ const shipRoutes = require("./routes/ship-routes");
 
 const app = express();
 
+app.disable("etag");
+app.use(logger("dev"));
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
