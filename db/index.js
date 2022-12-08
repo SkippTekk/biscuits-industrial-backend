@@ -73,7 +73,7 @@ invtypes.build = (id) => {
 };
 invtypes.navbar = () => {
     return new Promise((resolve, reject) => {
-            connection.query('select * from chrFactions where factionID IN (500003,500001,500004,500002,500014,500010,500019,500012,500011,500020,500016,500018,500026,500027)', (err, results) => {
+            connection.query('select * FROM invTypes JOIN invGroups ON invGroups.groupID=invTypes.groupID JOIN invMarketGroups ON invMarketGroups.marketGroupID = invTypes.marketGroupID and invGroups.categoryID = 6 AND invTypes.published  =1', (err, results) => {
                 if(err){
                     return reject(err);
                 }
