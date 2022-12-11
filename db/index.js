@@ -1,32 +1,13 @@
 require("dotenv").config();
 const mysql = require("mysql2");
 
-// const db = mysql.createPool({
-//   connectionLimit: 100,
-//   host: process.env.DATABASE_URL,
-//   user: process.env.DATABASE_USER,
-//   password: process.env.DATABASE_PASSWORD,
-//   database: process.env.DATABASE_NAME,
-//   port: "3306",
-//   charset: "utf8mb4_bin",
-// });
-
 const db = mysql.createConnection({
   host: process.env.DATABASE_URL,
   user: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
   database: process.env.DATABASE_NAME,
+  charset: "utf8mb4_bin",
 });
-
-// db.getConnection((err) => {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     console.log(
-//       `Connected to *` + process.env.DATABASE_NAME + `* database db/index.js`
-//     );
-//   }
-// });
 
 module.exports = db;
 
