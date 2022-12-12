@@ -25,7 +25,7 @@ app.use(
 );
 
 // app.use("/api", apiRouter);
-app.use("/api/get/ship", shipRoutes);
+app.use("/api/ship", shipRoutes);
 
 app.listen(process.env.PORT || "3001", () => {
   console.log(`Backend is running ${process.env.PORT || "3001"}`);
