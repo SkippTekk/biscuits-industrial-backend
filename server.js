@@ -17,10 +17,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
   cors({
-    origin: true,
+    origin: "http://localhost:3000",
     credentials: false,
     methods: "GET",
-    allowedHeaders: ["Content-Type", "X-Requested-With"],
+    allowedHeaders: [
+      "Content-Type",
+      "X-Requested-With",
+      "Access-Control-Allow-Origin",
+    ],
   })
 );
 
