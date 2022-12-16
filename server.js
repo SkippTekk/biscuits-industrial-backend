@@ -15,18 +15,21 @@ app.use(logger("dev"));
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(
-  cors({
-    origin: "https://localhost:3000",
-    credentials: false,
-    methods: "GET",
-    allowedHeaders: [
-      "Content-Type",
-      "X-Requested-With",
-      "Access-Control-Allow-Origin",
-    ],
-  })
-);
+app.use(cors());
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  if ("OPTIONS" == req.method) {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+});
 
 // app.use("/api", apiRouter);
 app.use("/api/ship", shipRoutes);
