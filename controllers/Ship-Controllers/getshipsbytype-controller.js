@@ -7,23 +7,28 @@ const getShipsByType = (req, res) => {
     db.query(
       `
       SELECT 
-        invTypes.typeName,
-        invTypes.raceID,
-        invTypes.marketGroupID,
-        invMarketGroups.marketGroupName
-    FROM
-        invTypes
-            JOIN
-        (SELECT 
-            groupID, groupName
-        FROM
-            invGroups) invGroups ON invGroups.groupID = invTypes.groupID
-            JOIN
-        (SELECT 
-            marketGroupID, marketGroupName
-        FROM
-            invMarketGroups) invMarketGroups ON invMarketGroups.marketGroupID = invTypes.marketGroupID
-        WHERE invTypes.raceID = ${race}`,
+          invTypes.typeName,
+          invTypes.typeID,
+          invTypes.raceID,
+          invTypes.marketGroupID,
+          invMarketGroups.marketGroupName
+      FROM
+          invTypes
+              JOIN
+          (SELECT 
+              groupID, groupName, categoryID
+          FROM
+              invGroups) invGroups ON invGroups.groupID = invTypes.groupID
+              JOIN
+          (SELECT 
+              marketGroupID, marketGroupName
+          FROM
+              invMarketGroups) invMarketGroups ON invMarketGroups.marketGroupID = invTypes.marketGroupID
+      WHERE
+          invTypes.raceID = ${race}
+              AND invGroups.categoryID = 6
+              AND invTypes.published = 1
+        `,
       (err, data) => {
         if (err) {
           return res.status(404).json({
