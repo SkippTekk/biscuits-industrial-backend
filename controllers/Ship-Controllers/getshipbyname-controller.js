@@ -2,7 +2,7 @@ const db = require("../../db/index");
 
 const getShipByName = async (req, res) => {
   const input = req.params.input;
-
+  d;
   let shipData = [];
 
   try {
@@ -33,7 +33,7 @@ const getShipByName = async (req, res) => {
           invMarketGroups) invMarketGroups ON invMarketGroups.marketGroupID = invTypes.marketGroupID
           AND invGroups.categoryID = 6
           AND invTypes.published = 1
-          AND invTypes.typeName = "${input}"`,
+          AND invTypes.typeName = '${input}'`,
       (err, data) => {
         if (err) {
           return res.status(404).json({

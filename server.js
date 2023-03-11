@@ -24,6 +24,7 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
+
   if ("OPTIONS" == req.method) {
     res.status(200);
   } else {
